@@ -1,0 +1,105 @@
+{% load static %}
+{% load humanize %}
+<!-- Header -->
+<!-- Topbar -->
+<div class="topbar">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-12">
+                <!-- Top Right -->
+                <div class="top-right">
+                    <ul class="list-main">
+                        <li><i class="ti-home"></i> <a href="{% url 'home:home' %}">خانه</a></li>
+                        {% if user.is_authenticated %}
+                        <li><i class="ti-power-off"></i> <a href="{% url 'accounts:logout' %}">خروج</a></li>
+                        {% else %}
+                        <li><i class="ti-power-off"></i><a href="{% url 'accounts:signup' %}">ورود/ثبت نام</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <!-- End Top Right -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Topbar -->
+<div class="middle-inner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-12">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="{% url 'home:home' %}"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+                </div>
+                <!--/ End Logo -->
+
+                <!-- Search Form  for mobile-->
+                <div class="search-top">
+                    <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
+                    <!-- Search Form -->
+                    <div class="search-top">
+                        <form class="search-form" method="post" action="{% url 'home:search-item' %}">
+                            {% csrf_token %}
+                            <input name="search_input" type="text" placeholder="Search here..." >
+                            <button value="search" type="submit"><i class="ti-search"></i></button>
+                        </form>
+                    </div>
+                    <!--/ End Search Form -->
+                </div>
+                <!--/ End Search Form -->
+                <div class="mobile-nav"></div>
+
+            <!-- search box for pc -->
+            </div>
+            <div class="col-lg-8 col-md-7 col-12">
+                <div class="search-bar-top">
+                    <div class="search-bar">
+                        <form method="post" action="{% url 'home:search-item' %}">
+                            {% csrf_token %}
+                            <input name="search_input" type="search" placeholder="Search Products Here.....">
+                            <button class="btnn"><i class="ti-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- end search box -->
+
+            <div class="col-lg-2 col-md-3 col-12">
+                <div class="right-bar">
+                    <div class="sinlge-bar">
+                        <a href="{% url 'accounts:user-profile' %}" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="sinlge-bar shopping">
+                        <a href="{% url 'orders:cart' %}" class="single-icon"><i class="ti-bag"></i> <span class="total-count">{{ cart | length }}</span></a>
+                        <!-- Shopping Item -->
+                        <div class="shopping-item">
+                            <div class="dropdown-cart-header">
+                                <span>{{ cart | length }} Items</span>
+                                <a href="{% url 'orders:cart' %}">View Cart</a>
+                            </div>
+                            {% for item in cart %}
+                            <ul class="shopping-list">
+                                <li>
+                                    <a href="{% url 'orders:cart-remove' item.product.id %}" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                    <a class="cart-img" href="{{ product.get_absolute_url }}"><img src="{{ item.product.image.url }}" alt="#"></a>
+                                    <h4><a href="{{ product.get_absolute_url }}">{{ item.product }}</a></h4>
+                                    <p class="quantity">{{ item.qty }}x  <span class="amount">{{ item.total_price | intcomma}}</span></p>
+                                </li>
+                            </ul>
+                            {% endfor %}
+                            <div class="bottom">
+                                <div class="total">
+                                    <span>Total</span>
+                                    <span class="total-amount">{{ cart.total_price| intcomma }} تومان</span>
+                                </div>
+                                <a href="#" class="btn animate">Checkout</a>
+                            </div>
+                        </div>
+                        <!--/ End Shopping Item -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ End Header -->

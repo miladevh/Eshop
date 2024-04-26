@@ -1,0 +1,73 @@
+{% extends 'base/index.html' %}
+{% load humanize %}
+
+{% block content %}
+		
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-12">
+                <div class="bread-inner">
+                    <ul class="bread-list">
+                        <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="blog-single.html">Shop Grid</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+
+<!-- Product Style -->
+<section class="product-area shop-sidebar shop section">
+    <div class="container">
+        <div class="row">      
+            {% for product in products %}
+            {% if product.is_sale %}
+                <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                    <div class="single-product">
+                        <div class="product-img">
+                            <a href="{{ product.get_absolute_url }}">
+                                <img class="default-img" src="{{ product.image.url }}" alt="#">
+                                <img class="hover-img" src="{{ product.image.url }}" alt="#">
+                                <span class="price-dec">تخفیف ویژه</span>
+                                <!-- <span class="new">New</span> -->
+                                <!--<span class="out-of-stock">Hot</span>-->
+                            </a>
+                        </div>
+                        <div class="product-content">
+                            <h3><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+                            <div class="product-price"><hr>
+                                <strike> <span>{{ product.price|intcomma }} تومان</span> </strike><br>
+                                <span>{{ product.sale_price|intcomma }} تومان</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                        <div class="single-product">
+                            <div class="product-img">
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img class="default-img" src="{{ product.image.url }}" alt="#">
+                                    <img class="hover-img" src="{{ product.image.url }}" alt="#">
+                                </a>
+                            </div>
+                            <div class="product-content">
+                                <h3><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+                                <div class="product-price"><hr>
+                                    <span>{{ product.price|intcomma }} تومان</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!--/ End Product Style 1  -->	
+
+{% endblock %}

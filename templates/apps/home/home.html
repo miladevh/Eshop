@@ -1,0 +1,194 @@
+{% extends 'base/index.html' %}
+{% load humanize %}
+
+{% block homeheader %}
+<!-- header inner. just for home page -->
+<div class="header-inner">
+    <div class="container">
+        <div class="cat-nav-head">
+            <div class="row">
+                <div class="col-lg-9 col-12">
+                    <div class="menu-area">
+                        <!-- Main Menu -->
+                        <nav class="navbar navbar-expand-lg">
+                            <div class="navbar-collapse">	
+                                <div class="nav-inner">	
+                                    <ul class="nav main-menu menu navbar-nav">
+                                        <li class="active"><a>دسته بندی ها<i class="ti-angle-down"></i></a>
+                                            <ul class="dropdown">
+                                                {% if all_category %}
+                                                {% for category in all_category %}
+                                                <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+
+                                                {% endfor %}
+                                                {% endif %}
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        <!--/ End Main Menu -->	
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ End Header Inner -->
+
+{% endblock %}
+
+
+
+{% block content %}
+<!-- Slider Area -->
+<section class="hero-slider">
+    <!-- Single Slider -->
+    <div class="single-slider">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-9 offset-lg-3 col-12">
+                    <div class="text-inner">
+                        <div class="row">
+                            <div class="col-lg-7 col-12">
+                                <div class="hero-text">
+                                    <h1><span>UP TO 50% OFF </span>Shirt For Man</h1>
+                                    <p>Maboriosam in a nesciung eget magnae <br> dapibus disting tloctio in the find it pereri <br> odiy maboriosm.</p>
+                                    <div class="button">
+                                        <a href="#" class="btn">Shop Now!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ End Single Slider -->
+</section>
+<!--/ End Slider Area -->
+
+<!-- Start Most Popular -->
+<div class="product-area most-popular section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>فروش ویژه</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="owl-carousel popular-slider">
+                    {% for product in sale_product %}
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-img">
+                            <a href="{{ product.get_absolute_url }}">
+                                <img class="default-img" src="{{ product.image.url }}" alt="#">
+                                <img class="hover-img" src="{{ product.image.url }}" alt="#">
+                                <span class="price-dec">تخفیف ویژه</span>
+                            </a>
+                        </div>
+                        <div class="product-content">
+                            <h3><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+                            <div class="product-price"><hr>
+                                <strike> <span>{{ product.price|intcomma }} تومان</span> </strike><br>
+                                 <span>{{ product.sale_price|intcomma }} تومان</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                    
+                    <!-- End Single Product -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Most Popular Area -->
+
+
+
+<!-- Start Product Area -->
+<div class="product-area section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>تمام محصولات</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-info">
+                        <div class="tab-content" id="myTabContent">
+                            <!-- Start Single Tab -->
+                            <div class="tab-pane fade show active" id="man" role="tabpanel">
+                                <div class="tab-single">
+                                    <div class="row">
+                                        {% for product in products %}
+                                            {% if product.is_sale %}
+                                                <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                                    <div class="single-product">
+                                                        <div class="product-img">
+                                                            <a href="{{ product.get_absolute_url }}">
+                                                                <img class="default-img" src="{{ product.image.url }}" alt="#">
+                                                                <img class="hover-img" src="{{ product.image.url }}" alt="#">
+                                                                <span class="price-dec">تخفیف ویژه</span>
+                                                                <!-- <span class="new">New</span> -->
+                                                                <!--<span class="out-of-stock">Hot</span>-->
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-content">
+                                                            <h3><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+                                                            <div class="product-price"><hr>
+                                                                <strike> <span>{{ product.price|intcomma }} تومان</span> </strike><br>
+                                                                <span>{{ product.sale_price|intcomma }} تومان</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% else %}
+                                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                                        <div class="single-product">
+                                                            <div class="product-img">
+                                                                <a href="{{ product.get_absolute_url }}">
+                                                                    <img class="default-img" src="{{ product.image.url }}" alt="#">
+                                                                    <img class="hover-img" src="{{ product.image.url }}" alt="#">
+                                                                </a>
+                                                            </div>
+                                                            <div class="product-content">
+                                                                <h3><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+                                                                <div class="product-price"><hr>
+                                                                    <span>{{ product.price|intcomma }} تومان</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            {% endif %}
+                                        {# end if #}
+                                        {% endfor %}
+                                        {#  end for  #}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<!-- End Product Area -->
+
+
+
+{% include 'base/services.html' %}
+<!-- include footer -->
+{% endblock %}
