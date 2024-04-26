@@ -75,7 +75,7 @@
                         <div class="shopping-item">
                             <div class="dropdown-cart-header">
                                 <span>{{ cart | length }} Items</span>
-                                <a href="{% url 'orders:cart' %}">View Cart</a>
+                                <a href="{% url 'orders:cart' %}">برو به سبد خرید</a>
                             </div>
                             {% for item in cart %}
                             <ul class="shopping-list">
@@ -92,7 +92,7 @@
                                     <span>Total</span>
                                     <span class="total-amount">{{ cart.total_price| intcomma }} تومان</span>
                                 </div>
-                                <a href="#" class="btn animate">Checkout</a>
+                                <a href="#" class="btn animate">پرداخت</a>
                             </div>
                         </div>
                         <!--/ End Shopping Item -->
