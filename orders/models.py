@@ -3,6 +3,7 @@ from home.models import Product
 from django.contrib.auth import get_user_model
 
 
+# مدل سفارش کاربر
 class Orders(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='orders')
     send = models.BooleanField(default=False)
@@ -18,7 +19,7 @@ class Orders(models.Model):
     def get_total_price(self):
         return sum(item.get_price() for item in self.items.all())
 
-
+# ایتم های موجود در سبد خرید
 class OrderItem(models.Model):
     order = models.ForeignKey(Orders, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

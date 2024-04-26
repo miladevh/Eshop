@@ -4,7 +4,7 @@ from .models import User, OtpCode, UserProfile
 from django.contrib.auth.models import Group
 
 
-
+# نمایش پروفایل در زیر مدل یوزر
 class ProfileInline(admin.StackedInline):
     model = UserProfile
 
@@ -33,9 +33,6 @@ class UserAdmin(BaseUserAdmin):
 @admin.register(OtpCode)
 class OtpCode(admin.ModelAdmin):
     list_display = ('phone_number', 'code', 'created')
-
-
-
 
 admin.site.unregister(Group)
 admin.site.register(User, UserAdmin)

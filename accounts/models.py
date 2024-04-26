@@ -46,16 +46,17 @@ class OtpCode(models.Model):
     def __str__(self):
         return f'{self.phone_number} - {self.code} - {self.created}'
     
-
+# پروفایل کاربر
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     address = models.TextField(null=True, blank=True)
     balance = models.BigIntegerField(default=10000)
 
 
+# ایجاد پروفایل به صورت اتوماتیک برای جلوگیری از ارور کاربرانی که تازه ثبت نام کردن
 def create_profile(sender, **kwargs):
     if kwargs['created']:
         UserProfile.objects.create(user=kwargs['instance'])
 
-
+# اطلاع ثبت نام کاربر جدید
 post_save.connect(receiver=create_profile, sender=User )

@@ -117,27 +117,32 @@ class UserLogoutView(View, LoginRequiredMixin):
         return redirect('home:home')
 
 
-
+# نمایش پروفایل
 class UserProfileView(View, LoginRequiredMixin):
     def get(self, request):
+        # گرفتن اطلاعات یوزری که الان لاگین هست
         user = request.user.profile
         return render(request, 'apps/accounts/profile.html', {'profile':user})
 
 
-
+# ویرایش پروفایل
 class UserProfileEdit(View, LoginRequiredMixin):
     form = ProfileEditForm
     def get(self, request):
+        # نمایش فرم ویرایش به همراه اطلاعاتی که در حال حاظر وجود دارند
         edit_form = self.form(instance=request.user.profile, initial={'full_name':request.user.full_name, 'phone_number':request.user.phone_number})
         return render(request, 'apps/accounts/editprofile.html', {'form':edit_form})
 
     def post(self, request):
+        # ذخیره اطلاعات مدل پروفایل
         form = self.form(request.POST, instance=request.user.profile)
         if form.is_valid:
             form.save()
+            # ذخیره اطلاعاتی که در مدل پروفایل به ان دسترسی نداریم
             request.user.full_name = form.cleaned_data['full_name']
             request.user.phone_number = form.cleaned_data['phone_number']
             request.user.save()
+            return redirect('accounts:user-profile')
             
 
 

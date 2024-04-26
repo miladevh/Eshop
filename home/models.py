@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 from unidecode import unidecode
 
-
+# دسته بندی محصولات
 class Categoty(models.Model):
     name = models.CharField(max_length= 200)
     slug = models.SlugField(max_length= 200, unique=True)
@@ -12,19 +12,19 @@ class Categoty(models.Model):
         ordering = ('name',)
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
-
+    # ساخت اسلاگ برای هر کتگوری
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(unidecode(self.name))
         super().save(*args, **kwargs)
-
+    # ساخت url
     def get_absolute_url(self):
         return reverse('home:one-category', args=[self.slug,])
 
     def __str__(self):
         return self.name
     
-
+# محصولات
 class Product(models.Model):
     category = models.ForeignKey(Categoty, on_delete= models.CASCADE, related_name= 'products')
     name = models.CharField(max_length=200)
@@ -40,7 +40,7 @@ class Product(models.Model):
 
     class Meta:
         ordering = ('name',)
-
+    # ساخت اسلاگ برای هر محصول
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(unidecode(self.name))
@@ -48,6 +48,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-
+    # ساخت url
     def get_absolute_url(self):
-        return reverse('home:product-details', args=[self.slug])
+        return reverse('home:product-details', args=[self.slug,])
