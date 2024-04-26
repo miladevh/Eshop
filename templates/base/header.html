@@ -63,7 +63,7 @@
                 </div>
             </div>
             <!-- end search box -->
-
+            {% if user.is_authenticated %}
             <div class="col-lg-2 col-md-3 col-12">
                 <div class="right-bar">
                     <div class="sinlge-bar">
@@ -99,6 +99,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
