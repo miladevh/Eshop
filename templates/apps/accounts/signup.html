@@ -10,53 +10,52 @@
                     <div class="container">
                         <div class="form-main">
                             <div class="title">
-                                <h4>Get in touch</h4>
-                                <h3>Write us a message</h3>
+                                <h3>اطلاعات خود را وارد کنید</h3>
                             </div>
                             <form class="form" method="post" action="{% url 'accounts:signup' %}">
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group message">
-                                            <label>your full name<span>*</span></label>
+                                            <label>نام و نام خانوادگی<span>*</span></label>
                                             <input name="full_name" type="text" placeholder="" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
-                                            <label>Your email<span>*</span></label>
+                                            <label>ایمیل<span>*</span></label>
                                             <input name="email" type="email" placeholder="" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
-                                            <label>Your phone number<span>*</span></label>
+                                            <label>تلفن<span>*</span></label>
                                             <input name="phone_number" type="text" placeholder="" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
-                                            <label>Your password<span>*</span></label>
+                                            <label>رمز عبور<span>*</span></label>
                                             <input name="password1" type="password" placeholder="" required>
                                         </div>	
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
-                                            <label>Your password(again)<span>*</span></label>
+                                            <label>تکرار رمز عبور<span>*</span></label>
                                             <input name="password2" type="password" placeholder="" required>
                                         </div>	
                                     </div>
 
                                     <div class="col-12">
                                         <div class="form-group button">
-                                            <button type="submit" class="btn ">register</button>
+                                            <button type="submit" class="btn ">ثبت نام</button>
                                         </div>
                                     </div>
                             </form>
                                 <div class="col-12">
                                     <div class="form-group button"><br>
                                         <button type="button" class="btn ">
-                                            <a href="{% url 'accounts:login' %}">login</a>
+                                            <a href="{% url 'accounts:login' %}">ورود</a>
                                         </button>
                                     </div>
                                 </div>
@@ -69,10 +68,5 @@
 </section>
 <!--/ End Contact -->
 
-<!-- Map Section -->
-<div class="map-section">
-    <div id="myMap"></div>
-</div>
-<!--/ End Map Section -->
 
 {% endblock %}

@@ -9,21 +9,20 @@
                     <div class="container">
                         <div class="form-main">
                             <div class="title">
-                                <h4>Get in touch</h4>
-                                <h3>Write us a message</h3>
+                                <h3>کد تایید را وارد کنید</h3>
                             </div>
                             <form class="form" method="post" action="">
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group message">
-                                            <label>verify code<span>*</span></label>
+                                            <label>کد تایید<span>*</span></label>
                                             <input name="code" type="text" placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group button">
-                                            <button type="submit" class="btn ">enter</button>
+                                            <button type="submit" class="btn ">ارسال</button>
                                         </div>
                                     </div>
                                 </div>
@@ -35,11 +34,5 @@
         </div>
 </section>
 <!--/ End Contact -->
-
-<!-- Map Section -->
-<div class="map-section">
-    <div id="myMap"></div>
-</div>
-<!--/ End Map Section -->
 
 {% endblock %}

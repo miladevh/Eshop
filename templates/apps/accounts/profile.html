@@ -8,20 +8,19 @@
                     <div class="container">
                         <div class="form-main">
                             <div class="title">
-                                <h4>Get in touch</h4>
-                                <h3>Write us a message</h3>
+                                <h3>اطلاعات کاربری</h3>
                             </div>
-                                <p> {{profile.user.full_name}} </p>
-                                <p> {{profile.user.phone_number}} </p>
-                                <p> {{profile.user.email}} </p>
-                                <p> {{profile.balance}} </p>
-                                <p> {{profile.address}} </p>
+                                <p> نام و نام خانوادگی:{{profile.user.full_name}} </p>
+                                <p>  تلفن:{{profile.user.phone_number}} </p>
+                                <p> ایمیل:{{profile.user.email}} </p>
+                                <p> موجودی حساب:{{profile.balance}} </p>
+                                <p> ادرس:{{profile.address}} </p>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group button"><br>
                                 <button type="submit" class="btn ">
-                                    <a href="{% url 'accounts:edit-profile' %}">login</a>
+                                    <a href="{% url 'accounts:edit-profile' %}">ویرایش</a>
                                 </button>
                             </div>
                         </div>
